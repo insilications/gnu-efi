@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0w
-Release  : 22
+Release  : 23
 URL      : http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0w.orig.tar.gz
 Source0  : http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0w.orig.tar.gz
 Summary  : No detailed summary available
