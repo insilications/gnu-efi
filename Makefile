@@ -1,5 +1,5 @@
 PKG_NAME := gnu-efi
-URL := http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0w.orig.tar.gz
+URL := https://downloads.sourceforge.net/project/gnu-efi/gnu-efi-3.0.5.tar.bz2
 
 
 include ../common/Makefile.common

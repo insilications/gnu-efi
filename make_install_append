@@ -1,1 +1,1 @@
-cp -a %{buildroot}/usr/lib %{buildroot}/usr/lib64
+#cp -a %{buildroot}/usr/lib %{buildroot}/usr/lib64

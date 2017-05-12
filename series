@@ -1,3 +1,4 @@
-build-fix.patch
-ldflags.patch
-memset.patch
+#build-fix.patch
+#ldflags.patch
+#memset.patch
+nowerror.patch

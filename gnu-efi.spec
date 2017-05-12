@@ -4,21 +4,18 @@
 #
 %define keepstatic 1
 Name     : gnu-efi
-Version  : 3.0
-Release  : 26
-URL      : http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0w.orig.tar.gz
-Source0  : http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0w.orig.tar.gz
+Version  : 3.0.5
+Release  : 27
+URL      : https://downloads.sourceforge.net/project/gnu-efi/gnu-efi-3.0.5.tar.bz2
+Source0  : https://downloads.sourceforge.net/project/gnu-efi/gnu-efi-3.0.5.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
-Patch1: build-fix.patch
-Patch2: ldflags.patch
-Patch3: memset.patch
+Patch1: nowerror.patch
 
 %description
-IMPORTANT information related to the gnu-efi package
-----------------------------------------------------
-June 2001
+The files in the "lib" and "inc" subdirectories are using the EFI Application
+Toolkit distributed by Intel at http://developer.intel.com/technology/efi
 
 %package dev
 Summary: dev components for the gnu-efi package.
@@ -30,77 +27,73 @@ dev components for the gnu-efi package.
 
 
 %prep
-%setup -q -n gnu-efi-3.0
+%setup -q -n gnu-efi-3.0.5
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494611378
+export SOURCE_DATE_EPOCH=1494612058
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1494611378
+export SOURCE_DATE_EPOCH=1494612058
 rm -rf %{buildroot}
 %make_install
-## make_install_append content
-cp -a %{buildroot}/usr/lib %{buildroot}/usr/lib64
-## make_install_append end
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/crt0-efi-x86_64.o
-/usr/lib/elf_x86_64_efi.lds
-/usr/lib64/crt0-efi-x86_64.o
-/usr/lib64/elf_x86_64_efi.lds
+/usr/local/lib/crt0-efi-x86_64.o
+/usr/local/lib/elf_x86_64_efi.lds
+/usr/local/lib/libefi.a
+/usr/local/lib/libgnuefi.a
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/efi/efi.h
-/usr/include/efi/efi_nii.h
-/usr/include/efi/efi_pxe.h
-/usr/include/efi/efiapi.h
-/usr/include/efi/eficon.h
-/usr/include/efi/efidebug.h
-/usr/include/efi/efidef.h
-/usr/include/efi/efidevp.h
-/usr/include/efi/efierr.h
-/usr/include/efi/efifs.h
-/usr/include/efi/efigpt.h
-/usr/include/efi/efiip.h
-/usr/include/efi/efilib.h
-/usr/include/efi/efilink.h
-/usr/include/efi/efinet.h
-/usr/include/efi/efipart.h
-/usr/include/efi/efipciio.h
-/usr/include/efi/efipoint.h
-/usr/include/efi/efiprot.h
-/usr/include/efi/efipxebc.h
-/usr/include/efi/efirtlib.h
-/usr/include/efi/efiser.h
-/usr/include/efi/efishellintf.h
-/usr/include/efi/efishellparm.h
-/usr/include/efi/efistdarg.h
-/usr/include/efi/efitcp.h
-/usr/include/efi/efiudp.h
-/usr/include/efi/efiui.h
-/usr/include/efi/libsmbios.h
-/usr/include/efi/pci22.h
-/usr/include/efi/protocol/adapterdebug.h
-/usr/include/efi/protocol/eficonsplit.h
-/usr/include/efi/protocol/efidbg.h
-/usr/include/efi/protocol/efivar.h
-/usr/include/efi/protocol/intload.h
-/usr/include/efi/protocol/legacyboot.h
-/usr/include/efi/protocol/piflash64.h
-/usr/include/efi/protocol/vgaclass.h
-/usr/include/efi/romload.h
-/usr/include/efi/x86_64/efibind.h
-/usr/include/efi/x86_64/efilibplat.h
-/usr/include/efi/x86_64/pe.h
-/usr/lib/*.a
-/usr/lib64/*.a
+/usr/local/include/efi/efi.h
+/usr/local/include/efi/efi_nii.h
+/usr/local/include/efi/efi_pxe.h
+/usr/local/include/efi/efiapi.h
+/usr/local/include/efi/eficompiler.h
+/usr/local/include/efi/eficon.h
+/usr/local/include/efi/efidebug.h
+/usr/local/include/efi/efidef.h
+/usr/local/include/efi/efidevp.h
+/usr/local/include/efi/efierr.h
+/usr/local/include/efi/efifs.h
+/usr/local/include/efi/efigpt.h
+/usr/local/include/efi/efiip.h
+/usr/local/include/efi/efilib.h
+/usr/local/include/efi/efilink.h
+/usr/local/include/efi/efinet.h
+/usr/local/include/efi/efipart.h
+/usr/local/include/efi/efipciio.h
+/usr/local/include/efi/efipoint.h
+/usr/local/include/efi/efiprot.h
+/usr/local/include/efi/efipxebc.h
+/usr/local/include/efi/efirtlib.h
+/usr/local/include/efi/efiser.h
+/usr/local/include/efi/efisetjmp.h
+/usr/local/include/efi/efishellintf.h
+/usr/local/include/efi/efishellparm.h
+/usr/local/include/efi/efistdarg.h
+/usr/local/include/efi/efitcp.h
+/usr/local/include/efi/efiudp.h
+/usr/local/include/efi/efiui.h
+/usr/local/include/efi/libsmbios.h
+/usr/local/include/efi/pci22.h
+/usr/local/include/efi/protocol/adapterdebug.h
+/usr/local/include/efi/protocol/eficonsplit.h
+/usr/local/include/efi/protocol/efidbg.h
+/usr/local/include/efi/protocol/efivar.h
+/usr/local/include/efi/protocol/intload.h
+/usr/local/include/efi/protocol/legacyboot.h
+/usr/local/include/efi/protocol/piflash64.h
+/usr/local/include/efi/protocol/vgaclass.h
+/usr/local/include/efi/romload.h
+/usr/local/include/efi/x86_64/efibind.h
+/usr/local/include/efi/x86_64/efilibplat.h
+/usr/local/include/efi/x86_64/efisetjmp_arch.h
+/usr/local/include/efi/x86_64/pe.h
