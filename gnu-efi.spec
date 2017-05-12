@@ -4,8 +4,8 @@
 #
 %define keepstatic 1
 Name     : gnu-efi
-Version  : 3.0w
-Release  : 25
+Version  : 3.0
+Release  : 26
 URL      : http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0w.orig.tar.gz
 Source0  : http://downloads.sourceforge.net/gnu-efi/gnu-efi_3.0w.orig.tar.gz
 Summary  : No detailed summary available
@@ -16,13 +16,14 @@ Patch2: ldflags.patch
 Patch3: memset.patch
 
 %description
--------------------------------------------------
-Building EFI Applications Using the GNU Toolchain
--------------------------------------------------
+IMPORTANT information related to the gnu-efi package
+----------------------------------------------------
+June 2001
 
 %package dev
 Summary: dev components for the gnu-efi package.
 Group: Development
+Provides: gnu-efi-devel
 
 %description dev
 dev components for the gnu-efi package.
@@ -35,16 +36,27 @@ dev components for the gnu-efi package.
 %patch3 -p1
 
 %build
-make V=1 %{?_smp_mflags}
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1494611378
+make V=1  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1494611378
 rm -rf %{buildroot}
 %make_install
+## make_install_append content
+cp -a %{buildroot}/usr/lib %{buildroot}/usr/lib64
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
 /usr/lib/crt0-efi-x86_64.o
 /usr/lib/elf_x86_64_efi.lds
+/usr/lib64/crt0-efi-x86_64.o
+/usr/lib64/elf_x86_64_efi.lds
 
 %files dev
 %defattr(-,root,root,-)
@@ -91,3 +103,4 @@ rm -rf %{buildroot}
 /usr/include/efi/x86_64/efilibplat.h
 /usr/include/efi/x86_64/pe.h
 /usr/lib/*.a
+/usr/lib64/*.a
