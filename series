@@ -1,5 +1,5 @@
 #build-fix.patch
 #ldflags.patch
-#memset.patch
+memset.patch
 nowerror.patch
 nolocal.patch

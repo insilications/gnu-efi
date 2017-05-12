@@ -5,14 +5,15 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.5
-Release  : 28
+Release  : 29
 URL      : https://downloads.sourceforge.net/project/gnu-efi/gnu-efi-3.0.5.tar.bz2
 Source0  : https://downloads.sourceforge.net/project/gnu-efi/gnu-efi-3.0.5.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
-Patch1: nowerror.patch
-Patch2: nolocal.patch
+Patch1: memset.patch
+Patch2: nowerror.patch
+Patch3: nolocal.patch
 
 %description
 The files in the "lib" and "inc" subdirectories are using the EFI Application
@@ -31,17 +32,18 @@ dev components for the gnu-efi package.
 %setup -q -n gnu-efi-3.0.5
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1494612207
+export SOURCE_DATE_EPOCH=1494612775
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1494612207
+export SOURCE_DATE_EPOCH=1494612775
 rm -rf %{buildroot}
 %make_install
 
