@@ -2,3 +2,4 @@
 #ldflags.patch
 #memset.patch
 nowerror.patch
+nolocal.patch
