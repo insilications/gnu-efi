@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : gnu-efi
-Version  : 3.0.5
-Release  : 31
-URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.5.tar.bz2
-Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.5.tar.bz2
+Version  : 3.0.6
+Release  : 32
+URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
+Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -29,7 +29,7 @@ dev components for the gnu-efi package.
 
 
 %prep
-%setup -q -n gnu-efi-3.0.5
+%setup -q -n gnu-efi-3.0.6
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -39,11 +39,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496440105
+export SOURCE_DATE_EPOCH=1497981131
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1496440105
+export SOURCE_DATE_EPOCH=1497981131
 rm -rf %{buildroot}
 %make_install
 
