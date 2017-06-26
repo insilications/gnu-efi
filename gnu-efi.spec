@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.6
-Release  : 32
+Release  : 33
 URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
 Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
 Summary  : No detailed summary available
@@ -39,11 +39,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1497981131
+export SOURCE_DATE_EPOCH=1498519539
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1497981131
+export SOURCE_DATE_EPOCH=1498519539
 rm -rf %{buildroot}
 %make_install
 
