@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.6
-Release  : 35
+Release  : 36
 URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
 Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
 Summary  : No detailed summary available
@@ -14,6 +14,7 @@ License  : BSD-2-Clause
 Patch1: memset.patch
 Patch2: nowerror.patch
 Patch3: nolocal.patch
+Patch4: 0001-add-missing-rule-to-makefile.patch
 
 %description
 The files in the "lib" and "inc" subdirectories are using the EFI Application
@@ -33,17 +34,18 @@ dev components for the gnu-efi package.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1498519539
+export SOURCE_DATE_EPOCH=1503011465
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1498519539
+export SOURCE_DATE_EPOCH=1503011465
 rm -rf %{buildroot}
 %make_install
 
