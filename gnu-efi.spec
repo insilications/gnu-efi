@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : gnu-efi
-Version  : 3.0.6
-Release  : 42
-URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
-Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.6.tar.bz2
+Version  : 3.0.8
+Release  : 43
+URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
+Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -17,8 +17,9 @@ Patch3: nolocal.patch
 Patch4: 0001-add-missing-rule-to-makefile.patch
 
 %description
-The files in the "lib" and "inc" subdirectories are using the EFI Application
-Toolkit distributed by Intel at http://developer.intel.com/technology/efi
+-------------------------------------------------
+Building EFI Applications Using the GNU Toolchain
+-------------------------------------------------
 
 %package dev
 Summary: dev components for the gnu-efi package.
@@ -30,7 +31,7 @@ dev components for the gnu-efi package.
 
 
 %prep
-%setup -q -n gnu-efi-3.0.6
+%setup -q -n gnu-efi-3.0.8
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -41,11 +42,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503011465
-make V=1  %{?_smp_mflags}
+export SOURCE_DATE_EPOCH=1525540089
+make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1503011465
+export SOURCE_DATE_EPOCH=1525540089
 rm -rf %{buildroot}
 %make_install
 

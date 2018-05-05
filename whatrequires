@@ -1,0 +1,15 @@
+# This file contains recursive sources that require this package
+Keras
+Theano
+acrn-hypervisor
+beignet
+clr-init
+efitools
+libvirt
+linux-oracle
+mariadb
+pciutils
+sbsigntools
+shim
+sysstat
+systemd
