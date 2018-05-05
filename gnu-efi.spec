@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.8
-Release  : 43
+Release  : 44
 URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
 Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
 Summary  : No detailed summary available
@@ -42,11 +42,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525540089
-make  %{?_smp_mflags}
+export SOURCE_DATE_EPOCH=1525541411
+make
 
 %install
-export SOURCE_DATE_EPOCH=1525540089
+export SOURCE_DATE_EPOCH=1525541411
 rm -rf %{buildroot}
 %make_install
 
