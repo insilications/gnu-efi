@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.8
-Release  : 44
+Release  : 45
 URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
 Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
 Summary  : No detailed summary available
@@ -15,6 +15,7 @@ Patch1: memset.patch
 Patch2: nowerror.patch
 Patch3: nolocal.patch
 Patch4: 0001-add-missing-rule-to-makefile.patch
+Patch5: weak.patch
 
 %description
 -------------------------------------------------
@@ -36,17 +37,18 @@ dev components for the gnu-efi package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525541411
+export SOURCE_DATE_EPOCH=1525541933
 make
 
 %install
-export SOURCE_DATE_EPOCH=1525541411
+export SOURCE_DATE_EPOCH=1525541933
 rm -rf %{buildroot}
 %make_install
 

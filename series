@@ -4,3 +4,4 @@ memset.patch
 nowerror.patch
 nolocal.patch
 0001-add-missing-rule-to-makefile.patch
+weak.patch
