@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.8
-Release  : 48
+Release  : 49
 URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
 Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
 Summary  : No detailed summary available
