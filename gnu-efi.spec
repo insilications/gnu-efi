@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : gnu-efi
-Version  : 3.0.8
-Release  : 49
-URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
-Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.8.tar.bz2
+Version  : 3.0.9
+Release  : 50
+URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.9.tar.bz2
+Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.9.tar.bz2
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -25,14 +25,14 @@ Building EFI Applications Using the GNU Toolchain
 %package dev
 Summary: dev components for the gnu-efi package.
 Group: Development
-Provides: gnu-efi-devel
+Provides: gnu-efi-devel = %{version}-%{release}
 
 %description dev
 dev components for the gnu-efi package.
 
 
 %prep
-%setup -q -n gnu-efi-3.0.8
+%setup -q -n gnu-efi-3.0.9
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -44,11 +44,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525541933
+export SOURCE_DATE_EPOCH=1554503111
+export LDFLAGS="${LDFLAGS} -fno-lto"
 make
 
+
 %install
-export SOURCE_DATE_EPOCH=1525541933
+export SOURCE_DATE_EPOCH=1554503111
 rm -rf %{buildroot}
 %make_install
 
