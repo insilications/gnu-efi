@@ -1,0 +1,54 @@
+From 57caf5e7e0d8b1d8482fff6f471ebe679a7f563a Mon Sep 17 00:00:00 2001
+From: Geoffroy Van Cutsem <geoffroy.vancutsem@intel.com>
+Date: Fri, 13 Sep 2019 12:17:06 -0700
+Subject: [PATCH] Makefile: add pkgconfig generation code
+
+Add Makefile instructions to generate a pkgconfig file.
+
+Note: a couple of non-standard variables, namely "CRT0" and "LDSCRIPT", are
+included as they are typically needed when using this package but installed in
+different locations by different distributions.
+
+Signed-off-by: Geoffroy Van Cutsem <geoffroy.vancutsem@intel.com>
+---
+ Makefile | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 01d1a01..594aabb 100644
+--- a/Makefile
++++ b/Makefile
+@@ -86,12 +86,29 @@ clean:
+ 			$(MAKE) -C $(OBJDIR)/$$d -f $(SRCDIR)/$$d/Makefile SRCDIR=$(SRCDIR)/$$d clean; \
+ 		fi; \
+ 	done
++	rm -f gnu-efi.pc
+ 
+-install:
++install: gnu-efi.pc
+ 	@for d in $(SUBDIRS); do \
+ 		mkdir -p $(OBJDIR)/$$d; \
+ 		$(MAKE) -C $(OBJDIR)/$$d -f $(SRCDIR)/$$d/Makefile SRCDIR=$(SRCDIR)/$$d install; done
+ 
++	mkdir -p $(INSTALLROOT)$(LIBDIR)/pkgconfig
++	$(INSTALL) -m 644 gnu-efi.pc $(INSTALLROOT)$(LIBDIR)/pkgconfig/
++
++gnu-efi.pc:
++	$(file > gnu-efi.pc,prefix=$(PREFIX))
++	$(file >> gnu-efi.pc,includedir=$(PREFIX)/include/efi)
++	$(file >> gnu-efi.pc,libdir=$(LIBDIR))
++	$(file >> gnu-efi.pc,CRT0=$(LIBDIR)/crt0-efi-$(ARCH).o)
++	$(file >> gnu-efi.pc,LDSCRIPT=$(LIBDIR)/elf_$(ARCH)_efi.lds)
++	$(file >> gnu-efi.pc,)
++	$(file >> gnu-efi.pc,Name: gnu-efi)
++	$(file >> gnu-efi.pc,Description: Develop EFI applications using the GNU toolchain and the EFI development environment.)
++	$(file >> gnu-efi.pc,Version: $(VERSION))
++	$(file >> gnu-efi.pc,Cflags: -I$(PREFIX)/include/efi -I$(PREFIX)/include/efi/protocol -I$(PREFIX)/include/efi/$(ARCH))
++	$(file >> gnu-efi.pc,Libs: -L$(LIBDIR) -lgnuefi -lefi)
++
+ .PHONY:	$(SUBDIRS) clean depend
+ 
+ #
+-- 
+2.22.0
+

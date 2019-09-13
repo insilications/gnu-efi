@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.9
-Release  : 50
+Release  : 51
 URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.9.tar.bz2
 Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.9.tar.bz2
 Summary  : No detailed summary available
@@ -16,6 +16,7 @@ Patch2: nowerror.patch
 Patch3: nolocal.patch
 Patch4: 0001-add-missing-rule-to-makefile.patch
 Patch5: weak.patch
+Patch6: 0002-Makefile-add-pkgconfig-generation-code.patch
 
 %description
 -------------------------------------------------
@@ -26,9 +27,19 @@ Building EFI Applications Using the GNU Toolchain
 Summary: dev components for the gnu-efi package.
 Group: Development
 Provides: gnu-efi-devel = %{version}-%{release}
+Requires: gnu-efi = %{version}-%{release}
 
 %description dev
 dev components for the gnu-efi package.
+
+
+%package staticdev
+Summary: staticdev components for the gnu-efi package.
+Group: Default
+Requires: gnu-efi-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the gnu-efi package.
 
 
 %prep
@@ -38,19 +49,24 @@ dev components for the gnu-efi package.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1554503111
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1568402439
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make
 
 
 %install
-export SOURCE_DATE_EPOCH=1554503111
+export SOURCE_DATE_EPOCH=1568402439
 rm -rf %{buildroot}
 %make_install
 
@@ -106,4 +122,9 @@ rm -rf %{buildroot}
 /usr/include/efi/x86_64/efilibplat.h
 /usr/include/efi/x86_64/efisetjmp_arch.h
 /usr/include/efi/x86_64/pe.h
-/usr/lib64/*.a
+/usr/lib64/pkgconfig/gnu-efi.pc
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/libefi.a
+/usr/lib64/libgnuefi.a
