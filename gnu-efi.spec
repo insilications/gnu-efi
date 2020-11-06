@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.9
-Release  : 53
+Release  : 54
 URL      : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.9.tar.bz2
 Source0  : https://sourceforge.net/projects/gnu-efi/files/gnu-efi-3.0.9.tar.bz2
 Summary  : No detailed summary available
@@ -44,6 +44,7 @@ staticdev components for the gnu-efi package.
 
 %prep
 %setup -q -n gnu-efi-3.0.9
+cd %{_builddir}/gnu-efi-3.0.9
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -56,19 +57,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568402439
+export SOURCE_DATE_EPOCH=1604706098
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 make
 
 
 %install
-export SOURCE_DATE_EPOCH=1568402439
+export SOURCE_DATE_EPOCH=1604706098
 rm -rf %{buildroot}
 %make_install
+## install_append content
+#cp -a %{buildroot}/usr/lib %{buildroot}/usr/lib64
+## install_append end
 
 %files
 %defattr(-,root,root,-)
