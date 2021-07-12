@@ -1,8 +1,6 @@
-#build-fix.patch
-#ldflags.patch
-memset.patch
-nowerror.patch
-nolocal.patch
-0001-add-missing-rule-to-makefile.patch
-weak.patch
-0002-Makefile-add-pkgconfig-generation-code.patch
+#memset.patch
+#nowerror.patch
+#nolocal.patch
+#0001-add-missing-rule-to-makefile.patch
+#weak.patch
+#0002-Makefile-add-pkgconfig-generation-code.patch

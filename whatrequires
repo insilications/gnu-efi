@@ -3,6 +3,8 @@ acrn-hypervisor
 efitools
 fwupd
 fwupdate
+gnu-efi-dev
+gnu-efi-staticdev
 sbsigntools
 shim
 systemd
