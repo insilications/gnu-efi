@@ -3,7 +3,6 @@ export CXXFLAGS=""
 export FCFLAGS=""
 export FFLAGS=""
 export CFFLAGS=""
-#
 export LDFLAGS=""
 export ARCH=x86_64
 #

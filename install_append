@@ -1,1 +1,2 @@
-#cp -a %{buildroot}/usr/lib %{buildroot}/usr/lib64
+install -dm 0755 %{buildroot}/usr/share/efi
+install -m 755 -p x86_64/apps/*.efi %{buildroot}/usr/share/efi/

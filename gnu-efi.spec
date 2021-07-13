@@ -5,21 +5,31 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.13
-Release  : 60
+Release  : 61
 URL      : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
+Requires: gnu-efi-data = %{version}-%{release}
 
 %description
 -------------------------------------------------
 Building EFI Applications Using the GNU Toolchain
 -------------------------------------------------
 
+%package data
+Summary: data components for the gnu-efi package.
+Group: Data
+
+%description data
+data components for the gnu-efi package.
+
+
 %package dev
 Summary: dev components for the gnu-efi package.
 Group: Development
+Requires: gnu-efi-data = %{version}-%{release}
 Provides: gnu-efi-devel = %{version}-%{release}
 Requires: gnu-efi = %{version}-%{release}
 
@@ -46,7 +56,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1626176418
+export SOURCE_DATE_EPOCH=1626177859
 export GCC_IGNORE_WERROR=1
 ## altflags1 content
 export CFLAGS=""
@@ -54,7 +64,6 @@ export CXXFLAGS=""
 export FCFLAGS=""
 export FFLAGS=""
 export CFFLAGS=""
-#
 export LDFLAGS=""
 export ARCH=x86_64
 #
@@ -70,21 +79,51 @@ export PATH="$PATH:/usr/local/cuda/bin:/usr/nvidia/bin:/usr/bin/haswell:/usr/bin
 export CPATH="$CPATH:/usr/local/cuda/include"
 #
 ## altflags1 end
-make  ARCH=x86_64 V=1 VERBOSE=1  V=1 VERBOSE=1
+## make_macro content
+make ARCH=x86_64 V=1 VERBOSE=1 -j16
+make ARCH=x86_64 V=1 VERBOSE=1 -j16 apps
+## make_macro end
 
 
 %install
-export SOURCE_DATE_EPOCH=1626176418
+export SOURCE_DATE_EPOCH=1626177859
 rm -rf %{buildroot}
 %make_install
 ## install_append content
-#cp -a %{buildroot}/usr/lib %{buildroot}/usr/lib64
+install -dm 0755 %{buildroot}/usr/share/efi
+install -m 755 -p x86_64/apps/*.efi %{buildroot}/usr/share/efi/
 ## install_append end
 
 %files
 %defattr(-,root,root,-)
 /usr/lib64/crt0-efi-x86_64.o
 /usr/lib64/elf_x86_64_efi.lds
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/efi/AllocPages.efi
+/usr/share/efi/FreePages.efi
+/usr/share/efi/bltgrid.efi
+/usr/share/efi/debughook.efi
+/usr/share/efi/drv0.efi
+/usr/share/efi/drv0_use.efi
+/usr/share/efi/exit.efi
+/usr/share/efi/lfbgrid.efi
+/usr/share/efi/modelist.efi
+/usr/share/efi/printenv.efi
+/usr/share/efi/route80h.efi
+/usr/share/efi/setdbg.efi
+/usr/share/efi/setjmp.efi
+/usr/share/efi/t.efi
+/usr/share/efi/t2.efi
+/usr/share/efi/t3.efi
+/usr/share/efi/t4.efi
+/usr/share/efi/t5.efi
+/usr/share/efi/t6.efi
+/usr/share/efi/t7.efi
+/usr/share/efi/t8.efi
+/usr/share/efi/tcc.efi
+/usr/share/efi/unsetdbg.efi
 
 %files dev
 %defattr(-,root,root,-)
