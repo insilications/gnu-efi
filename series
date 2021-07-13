@@ -4,4 +4,4 @@
 #0001-add-missing-rule-to-makefile.patch
 #weak.patch
 #0002-Makefile-add-pkgconfig-generation-code.patch
-0001-Prefix.patch
+#0001-Prefix.patch

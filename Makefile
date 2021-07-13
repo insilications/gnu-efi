@@ -1,5 +1,5 @@
 PKG_NAME := gnu-efi
-URL = https://git.code.sf.net/p/gnu-efi/code
+URL = https://github.com/insilications/gnu-efi-clr.git
 ARCHIVES = 
 ARCHIVES_GIT = 
 
