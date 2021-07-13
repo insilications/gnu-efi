@@ -1,10 +1,10 @@
-export CFLAGS="-g -O2"
-export CXXFLAGS="-g -O2"
-export FCFLAGS="-g -O2"
-export FFLAGS="-g -O2"
-export CFFLAGS="-g -O2"
+export CFLAGS="-fno-lto -O2"
+export CXXFLAGS="-fno-lto -O2"
+export FCFLAGS="-fno-lto -O2"
+export FFLAGS="-fno-lto -O2"
+export CFFLAGS="-fno-lto -O2"
 #
-export LDFLAGS="-g -O2"
+export LDFLAGS="-fno-lto -O2"
 #
 export AR=/usr/bin/gcc-ar
 export RANLIB=/usr/bin/gcc-ranlib
