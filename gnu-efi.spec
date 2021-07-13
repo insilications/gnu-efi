@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.13
-Release  : 56
+Release  : 57
 URL      : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Summary  : No detailed summary available
@@ -46,16 +46,16 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1626134220
+export SOURCE_DATE_EPOCH=1626134498
 export GCC_IGNORE_WERROR=1
 ## altflags1 content
-export CFLAGS="-g -O3"
-export CXXFLAGS="-g -O3"
-export FCFLAGS="-g -O3"
-export FFLAGS="-g -O3"
-export CFFLAGS="-g -O3"
+export CFLAGS="-g -O2"
+export CXXFLAGS="-g -O2"
+export FCFLAGS="-g -O2"
+export FFLAGS="-g -O2"
+export CFFLAGS="-g -O2"
 #
-export LDFLAGS="-g -O3"
+export LDFLAGS="-g -O2"
 #
 export AR=/usr/bin/gcc-ar
 export RANLIB=/usr/bin/gcc-ranlib
@@ -100,7 +100,7 @@ make    V=1 VERBOSE=1
 
 
 %install
-export SOURCE_DATE_EPOCH=1626134220
+export SOURCE_DATE_EPOCH=1626134498
 rm -rf %{buildroot}
 %make_install
 ## install_append content
