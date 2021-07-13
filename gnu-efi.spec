@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.13
-Release  : 59
+Release  : 60
 URL      : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Summary  : No detailed summary available
@@ -46,20 +46,18 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1626174943
+export SOURCE_DATE_EPOCH=1626176418
 export GCC_IGNORE_WERROR=1
 ## altflags1 content
-export CFLAGS="-fno-lto -O2"
-export CXXFLAGS="-fno-lto -O2"
-export FCFLAGS="-fno-lto -O2"
-export FFLAGS="-fno-lto -O2"
-export CFFLAGS="-fno-lto -O2"
+export CFLAGS=""
+export CXXFLAGS=""
+export FCFLAGS=""
+export FFLAGS=""
+export CFFLAGS=""
 #
-export LDFLAGS="-fno-lto -O2"
+export LDFLAGS=""
+export ARCH=x86_64
 #
-export AR=/usr/bin/gcc-ar
-export RANLIB=/usr/bin/gcc-ranlib
-export NM=/usr/bin/gcc-nm
 #
 export MAKEFLAGS=%{?_smp_mflags}
 #
@@ -71,36 +69,12 @@ export PATH="$PATH:/usr/local/cuda/bin:/usr/nvidia/bin:/usr/bin/haswell:/usr/bin
 #
 export CPATH="$CPATH:/usr/local/cuda/include"
 #
-export DISPLAY=:0
-export __GL_ALLOW_UNOFFICIAL_PROTOCOL=1
-export __GL_SYNC_TO_VBLANK=0
-export __GL_SYNC_DISPLAY_DEVICE=DFP-1
-export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DFP-1
-export LANG=en_US.UTF-8
-export XDG_CONFIG_DIRS=/usr/share/xdg:/etc/xdg
-export XDG_SEAT=seat0
-export XDG_SESSION_TYPE=tty
-export XDG_CURRENT_DESKTOP=KDE
-export XDG_SESSION_CLASS=user
-export XDG_VTNR=1
-export XDG_SESSION_ID=1
-export XDG_RUNTIME_DIR=/run/user/1000
-export XDG_DATA_DIRS=/usr/local/share:/usr/share
-export KDE_SESSION_VERSION=5
-export KDE_SESSION_UID=1000
-export KDE_FULL_SESSION=true
-export KDE_APPLICATIONS_AS_SCOPE=1
-export VDPAU_DRIVER=nvidia
-export LIBVA_DRIVER_NAME=vdpau
-export LIBVA_DRIVERS_PATH=/usr/lib64/dri
-export GTK_RC_FILES=/etc/gtk/gtkrc
-export FONTCONFIG_PATH=/usr/share/defaults/fonts
 ## altflags1 end
-make    V=1 VERBOSE=1
+make  ARCH=x86_64 V=1 VERBOSE=1  V=1 VERBOSE=1
 
 
 %install
-export SOURCE_DATE_EPOCH=1626174943
+export SOURCE_DATE_EPOCH=1626176418
 rm -rf %{buildroot}
 %make_install
 ## install_append content
