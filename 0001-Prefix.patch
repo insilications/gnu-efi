@@ -1,0 +1,27 @@
+From 0f8b3b88852ca1e25328d19bdbb895a0742c8c69 Mon Sep 17 00:00:00 2001
+From: Francisco Boni <boboniboni@gmail.com>
+Date: Tue, 13 Jul 2021 09:44:55 -0300
+Subject: [PATCH] Prefix
+
+---
+ Make.defaults | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Make.defaults b/Make.defaults
+index 47ed361..f55aec7 100755
+--- a/Make.defaults
++++ b/Make.defaults
+@@ -46,8 +46,8 @@ TOPDIR := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi)
+ # lib and include under the root
+ #
+ INSTALLROOT  := /
+-PREFIX       := /usr/local
+-LIBDIR 	     := $(PREFIX)/lib
++PREFIX       := /usr
++LIBDIR 	     := $(PREFIX)/lib64
+ INSTALL	     := install
+ 
+ # Compilation tools
+-- 
+2.32.0
+

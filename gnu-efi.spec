@@ -5,13 +5,14 @@
 %define keepstatic 1
 Name     : gnu-efi
 Version  : 3.0.13
-Release  : 61
+Release  : 62
 URL      : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/gnu-efi/gnu-efi-v3.0.13.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
 Requires: gnu-efi-data = %{version}-%{release}
+Patch1: 0001-Prefix.patch
 
 %description
 -------------------------------------------------
@@ -49,6 +50,7 @@ staticdev components for the gnu-efi package.
 %prep
 %setup -q -n gnu-efi
 cd %{_builddir}/gnu-efi
+%patch1 -p1
 
 %build
 unset http_proxy
@@ -56,7 +58,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1626177859
+export SOURCE_DATE_EPOCH=1626180362
 export GCC_IGNORE_WERROR=1
 ## altflags1 content
 export CFLAGS=""
@@ -86,7 +88,7 @@ make ARCH=x86_64 V=1 VERBOSE=1 -j16 apps
 
 
 %install
-export SOURCE_DATE_EPOCH=1626177859
+export SOURCE_DATE_EPOCH=1626180362
 rm -rf %{buildroot}
 %make_install
 ## install_append content
@@ -152,8 +154,8 @@ install -m 755 -p x86_64/apps/*.efi %{buildroot}/usr/share/efi/
 /usr/include/efi/efirtlib.h
 /usr/include/efi/efiser.h
 /usr/include/efi/efisetjmp.h
+/usr/include/efi/efishell.h
 /usr/include/efi/efishellintf.h
-/usr/include/efi/efishellparm.h
 /usr/include/efi/efistdarg.h
 /usr/include/efi/efitcp.h
 /usr/include/efi/efiudp.h
@@ -174,7 +176,6 @@ install -m 755 -p x86_64/apps/*.efi %{buildroot}/usr/share/efi/
 /usr/include/efi/x86_64/efilibplat.h
 /usr/include/efi/x86_64/efisetjmp_arch.h
 /usr/include/efi/x86_64/pe.h
-/usr/lib64/pkgconfig/gnu-efi.pc
 
 %files staticdev
 %defattr(-,root,root,-)
